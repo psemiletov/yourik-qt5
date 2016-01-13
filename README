@@ -1,0 +1,23 @@
+===INTRO===
+
+Yourik The Intergalactic Rabbit is the animal rights-themed arcade game.
+
+===INSTALLATION===
+
+To build Yourik from the source, you need GCC and Qt 5.x, SDL 2, SDL_Mixer libraries. 
+If you have all them installed, just do as root:
+
+qmake
+make
+make install
+
+and then use "yourik" command to run the game.
+Please note that Yourik uses OpenGL to draw its graphic, so if your videocard drivers have the bad OpenGL support, you'll get the bad game experience.
+
+
+===LICENSE NOTES===
+
+game code and media is Public Domain
+
+
+Peter Semiletov, january 12, 2011 - january 13, 2016
