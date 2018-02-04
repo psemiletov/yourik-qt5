@@ -262,6 +262,9 @@ public:
   QImage background_image;
   QImage title_screen;
   QImage status_heart;
+  
+  QImage *offscreen_buffer;
+  QImage *onscreen_buffer; 
 
   bool level_goal_gained;
   bool create_carrot;

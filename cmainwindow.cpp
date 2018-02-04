@@ -121,6 +121,10 @@ CGameArea::CGameArea()
 
   area_width = SOURCE_RES_X;
   area_height = SOURCE_RES_Y;
+  
+  offscreen_buffer = new QImage (SOURCE_RES_X, SOURCE_RES_Y, QImage::Format_RGB32);
+  onscreen_buffer = new QImage (DEST_RES_X, DEST_RES_Y, QImage::Format_RGB32);
+  
 
 #ifdef Q_WS_WIN
 
@@ -548,6 +552,9 @@ CGameArea::~CGameArea()
   done_sample_pool();
 
   delete sound_engine;
+  
+  delete offscreen_buffer;
+  delete onscreen_buffer; 
 }
 
 
@@ -557,7 +564,7 @@ void CGameArea::paintEvent (QPaintEvent * event)
 
   if (iteration_mode == ITERATION_GAME)
      {
-      QPainter painter (this);
+      QPainter painter (offscreen_buffer);
 
       painter.drawImage (0, 0, background_image);
 
@@ -705,14 +712,23 @@ void CGameArea::paintEvent (QPaintEvent * event)
 
      //end of iteration mode rendering
     painter.end();
+    
+    QPainter pr (this);
+    pr.drawImage (0, 0, *offscreen_buffer, 0, 0, DEST_RES_X, DEST_RES_Y);
+    
    }
 
 
   if (iteration_mode == ITERATION_TITLE)
      {
  //     qDebug() << "iteration_mode == ITERATION_TITLE";
-      QPainter painter (this);
-      painter.drawImage (0, 0, title_screen);
+      QPainter painter (offscreen_buffer);
+      
+      painter.drawImage (0, 0, title_screen, 0, 0, DEST_RES_X, DEST_RES_Y);
+      
+      QPainter pr (this);
+      pr.drawImage (0, 0, *offscreen_buffer);
+    
      }
 
   event->accept();

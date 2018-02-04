@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Yourik the Intergalactic rabbit
+Terminal=false
+Type=Application
+Icon=yourik
+Categories=Games;
+StartupNotify=false
+MimeType=text/plain;
+NoDisplay=false
+Keywords=game;
+Comment=the animal rights-themed game
+Exec=yourik

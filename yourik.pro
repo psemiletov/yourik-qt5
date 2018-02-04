@@ -1,4 +1,4 @@
-VERSION = 2.0.0
+VERSION = 2.1.0
 QT       += core gui opengl
 
 greaterThan(QT_MAJOR_VERSION, 4) {
@@ -9,12 +9,38 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 
 TEMPLATE = app
 
-isEmpty(PREFIX):PREFIX = /usr/local
-BINDIR = $$PREFIX/bin
-DATADIR = $$PREFIX
+win32:{
 
-TARGET = yourik
-target.path = $$BINDIR
+isEmpty(PREFIX) {
+PREFIX = /usr/local/bin
+}
+
+TARGET = bin/eko
+target.path = $$PREFIX
+}
+  
+
+unix:{
+
+isEmpty(PREFIX) {
+PREFIX = /usr/local
+}
+
+message(UNIX HERE)
+
+PREFIX = $$replace(PREFIX, bin,)
+
+TARGET = bin/yourik
+target.path = $$PREFIX/bin
+desktop.path=$$PREFIX/share/applications
+desktop.files=desktop/yourik.desktop
+
+icon64.path = $$PREFIX/share/icons/hicolor/64x64/apps/
+icon64.files += icons/yourik.png
+}
+
+
+DATADIR = $$PREFIX
 
 
 SOURCES += main.cpp\
@@ -61,7 +87,7 @@ unix: {
 
       LIBS += -lSDL2
       LIBS += -lSDL2_mixer
-    
+
       snd.path = $$PREFIX/share/yourik/snd
       snd.files += snd/*
       INSTALLS += snd
