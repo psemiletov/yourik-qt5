@@ -1,5 +1,5 @@
 VERSION = 2.1.2
-QT       += core gui opengl
+QT += core gui opengl
 
 greaterThan(QT_MAJOR_VERSION, 4) {
        QT += widgets
@@ -18,7 +18,7 @@ PREFIX = /usr/local/bin
 TARGET = bin/eko
 target.path = $$PREFIX
 }
-  
+
 
 unix:{
 
@@ -44,7 +44,6 @@ INSTALLS += desktop icon64
 
 DATADIR = $$PREFIX
 
-
 SOURCES += main.cpp\
            cmainwindow.cpp \
            game_elements.cpp \
@@ -52,7 +51,6 @@ SOURCES += main.cpp\
            utils.cpp
 
 INSTALLS += target
-#RESOURCES += yourik.qrc
 
 HEADERS  += cmainwindow.h \
             game_elements.h \
@@ -60,15 +58,17 @@ HEADERS  += cmainwindow.h \
             utils.h
 
 DISTFILES += COPYING \
-             TODO \ 
-             README \  
+             TODO \
+             README \
              INSTALL \
              AUTHORS \
              HACKING \
              ChangeLog \
              pix/* \
              titles/* \
-             snd/*
+             snd/* \
+             icons/* \
+             desktop/*
 
 
 win32:{
@@ -82,33 +82,28 @@ win32:{
 
 
 unix: {
+       PKGCONFIG += SDL2 \
+                    SDL2_mixer
 
-      PKGCONFIG += SDL2 \
-                   SDL2_mixer
 
+       LIBS += -lSDL2
+       LIBS += -lSDL2_mixer
 
-      LIBS += -lSDL2
-      LIBS += -lSDL2_mixer
+       snd.path = $$PREFIX/share/yourik/snd
+       snd.files += snd/*
+       INSTALLS += snd
 
-      snd.path = $$PREFIX/share/yourik/snd
-      snd.files += snd/*
-      INSTALLS += snd
+       pix.path = $$PREFIX/share/yourik/pix
+       pix.files += pix/*
+       INSTALLS += pix
 
-      pix.path = $$PREFIX/share/yourik/pix
-      pix.files += pix/*
-      INSTALLS += pix
-
-      titles.path = $$PREFIX/share/yourik/titles
-      titles.files += titles/*
-      INSTALLS += titles
+       titles.path = $$PREFIX/share/yourik/titles
+       titles.files += titles/*
+       INSTALLS += titles
 
 #     QMAKE_CXXFLAGS += -DMYDATADIR=\"\"$$PREFIX/share/yourik/snd\"\"
-      DEFINES += 'SNDDIR=\\\"$$PREFIX/share/yourik/snd/\\\"'
-      DEFINES += 'PIXDIR=\\\"$$PREFIX/share/yourik/pix/\\\"'
-      DEFINES += 'TITLESDIR=\\\"$$PREFIX/share/yourik/titles/\\\"'
+       DEFINES += 'SNDDIR=\\\"$$PREFIX/share/yourik/snd/\\\"'
+       DEFINES += 'PIXDIR=\\\"$$PREFIX/share/yourik/pix/\\\"'
+       DEFINES += 'TITLESDIR=\\\"$$PREFIX/share/yourik/titles/\\\"'
 }
 
-
-#INCLUDEPATH += `sdl-config --cflags`
-#LIBS += `sdl2-config --libs`
-#QMAKE_LIBS += `sdl2-config --libs` 
