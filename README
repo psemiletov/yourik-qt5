@@ -1,23 +1,34 @@
-===INTRO===
+# ABOUT | ОБ ИГРЕ
 
-Yourik The Intergalactic Rabbit is the animal rights-themed arcade game.
+Yourik The Intergalactic Rabbit is the animal rights-themed arcade game. Fight your way from the vivisection laboratory and save the animals. You are the genetically modified rabbit, Yourik, the Intergalactic One.
 
-===INSTALLATION===
+"Юрик: Начало" - аркадная игра на тему защиты прав животных. В первой её части рассказывается, как кролик-мутант Юрик, узник орбитальной лаборатории, попытается сбежать оттуда, да еще прихватив с собой остальных зверей.
 
-To build Yourik from the source, you need GCC and Qt 5.x, SDL 2, SDL_Mixer libraries. 
-If you have all them installed, just do as root:
+# INSTALLATION | УСТАНОВКА
+
+To build Yourik from the source, you need GCC and Qt 5.x, SDL 2, SDL_Mixer libraries. If you have all them installed, just do as root:
 
 qmake
 make
 make install
 
-and then use "yourik" command to run the game.
-Please note that Yourik uses OpenGL to draw its graphic, so if your videocard drivers have the bad OpenGL support, you'll get the bad game experience.
+And then use "yourik" command to run the game. Please note that Yourik uses OpenGL to draw its graphic, so if your videocard drivers have the bad OpenGL support, you'll get the bad game experience.
 
 
-===LICENSE NOTES===
+Для установки Юрика из исходника, надо установиит предварительно GCC, Qt 5.x, SDL 2, SDL_Mixer, затем под рутом выполнить:
+
+qmake
+make
+make install
+
+И запускать командой yourik. 
+
+
+# LICENSE NOTES | ЯКОБЫ ЛИЦУХА
 
 game code and media is Public Domain
 
+исходник и данные - общественное достояние
 
-Peter Semiletov, january 12, 2011 - january 13, 2016
+Петр Семилетов, разработка игры в 2010-2018
+Peter Semiletov, game development at 2010-2018

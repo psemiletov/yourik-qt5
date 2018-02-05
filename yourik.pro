@@ -37,6 +37,8 @@ desktop.files=desktop/yourik.desktop
 
 icon64.path = $$PREFIX/share/icons/hicolor/64x64/apps/
 icon64.files += icons/yourik.png
+
+INSTALLS += desktop icon64
 }
 
 
