@@ -42,8 +42,8 @@ int dest_res_y;
 void CMainWindow::writeSettings()
 {
   settings->setValue ("pos", pos());
-  settings->setValue ("width", dest_res_x());
-  settings->setValue ("height", dest_res_y());
+  settings->setValue ("width", dest_res_x);
+  settings->setValue ("height", dest_res_y);
 
   delete settings;
 }
