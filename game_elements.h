@@ -20,11 +20,11 @@
 
 #define SOURCE_RES_X 800
 #define SOURCE_RES_Y 600
-#define DEST_RES_X 800
-#define DEST_RES_Y 600
+//#define DEST_RES_X 1024
+//#define DEST_RES_Y 768
 
 
-#define CYC_PER_SECOND 50 //was 50
+#define CYC_PER_SECOND 50
 #define MAX_SPRITES 256
 #define MAX_SOUNDS 256
 

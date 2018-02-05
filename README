@@ -13,6 +13,7 @@ make
 make install
 
 And then use "yourik" command to run the game. Please note that Yourik uses OpenGL to draw its graphic, so if your videocard drivers have the bad OpenGL support, you'll get the bad game experience.
+At $HOME/.config/yourik/y.conf you can redefine the window resolution via width and height parameters (800x600 by default).
 
 
 Для установки Юрика из исходника, надо установиит предварительно GCC, Qt 5.x, SDL 2, SDL_Mixer, затем под рутом выполнить:
@@ -22,6 +23,7 @@ make
 make install
 
 И запускать командой yourik. 
+В файле $HOME/.config/yourik/y.conf вы можете переопределить разрешение окна через параметры width и height (800x600 по умолчанию).
 
 
 # LICENSE NOTES | ЯКОБЫ ЛИЦУХА

@@ -35,10 +35,16 @@ QString initial_level;
 int area_width;
 int area_height;
 
+int dest_res_x;
+int dest_res_y;
+
 
 void CMainWindow::writeSettings()
 {
   settings->setValue ("pos", pos());
+  settings->setValue ("width", dest_res_x());
+  settings->setValue ("height", dest_res_y());
+
   delete settings;
 }
 
@@ -67,6 +73,11 @@ void CMainWindow::readSettings()
 
   QPoint pos = settings->value ("pos", QPoint (1, 1)).toPoint();
   move (pos);
+
+  dest_res_x = settings->value ("width", 800).toInt();
+  dest_res_y = settings->value ("height", 600).toInt();
+
+
 }
 
 
@@ -74,7 +85,7 @@ CMainWindow::CMainWindow (QWidget *parent): QMainWindow(parent)
 {
   readSettings();
 
-  resize (QSize (DEST_RES_X, DEST_RES_Y));
+  resize (QSize (dest_res_x, dest_res_y));
 
 //  resize (QSize (RES_X, RES_Y));
 
@@ -123,7 +134,7 @@ CGameArea::CGameArea()
   area_height = SOURCE_RES_Y;
   
   offscreen_buffer = new QImage (SOURCE_RES_X, SOURCE_RES_Y, QImage::Format_RGB32);
-  onscreen_buffer = new QImage (DEST_RES_X, DEST_RES_Y, QImage::Format_RGB32);
+  onscreen_buffer = new QImage (dest_res_x, dest_res_y, QImage::Format_RGB32);
   
 
 #ifdef Q_WS_WIN
@@ -714,7 +725,8 @@ void CGameArea::paintEvent (QPaintEvent * event)
     painter.end();
     
     QPainter pr (this);
-    pr.drawImage (0, 0, *offscreen_buffer, 0, 0, DEST_RES_X, DEST_RES_Y);
+//    pr.drawImage (0, 0, *offscreen_buffer, 0, 0, SOURCE_RES_X, SOURCE_RES_Y);
+      pr.drawImage (QRect (0, 0, dest_res_x, dest_res_y), *offscreen_buffer);
     
    }
 
@@ -724,10 +736,12 @@ void CGameArea::paintEvent (QPaintEvent * event)
  //     qDebug() << "iteration_mode == ITERATION_TITLE";
       QPainter painter (offscreen_buffer);
       
-      painter.drawImage (0, 0, title_screen, 0, 0, DEST_RES_X, DEST_RES_Y);
+      painter.drawImage (0, 0, title_screen, 0, 0, SOURCE_RES_X, SOURCE_RES_Y);
       
       QPainter pr (this);
-      pr.drawImage (0, 0, *offscreen_buffer);
+      pr.drawImage (QRect (0, 0, dest_res_x, dest_res_y), *offscreen_buffer);
+  
+//      pr.drawImage (0, 0, *offscreen_buffer);
     
      }
 

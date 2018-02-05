@@ -314,7 +314,7 @@ public:
 
 protected:
 
-  void	paintEvent (QPaintEvent *event);
+  void paintEvent (QPaintEvent *event);
   void keyPressEvent (QKeyEvent *event);
 
 public slots:
